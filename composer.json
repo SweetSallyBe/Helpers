@@ -2,6 +2,7 @@
   "name": "sweet-sally-be/helper",
   "description": "Various Symfony for my projects",
   "type": "symfony-bundle",
+  "minimum-stability": "dev",
   "keywords": [
     "extensions","symfony","translatable"
   ],
