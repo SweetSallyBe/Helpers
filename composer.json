@@ -1,0 +1,35 @@
+{
+  "name": "sweet-sally-be/helper",
+  "description": "Various Symfony for my projects",
+  "type": "symfony-bundle",
+  "keywords": [
+    "extensions","symfony","translatable"
+  ],
+  "homepage": "https://www.sweetsally.be",
+  "license": "unlicensed",
+  "authors": [
+    { "name": "Sweet Sally", "homepage": "https://www.sweetsally.be" }
+  ],
+  "require": {
+    "doctrine/doctrine-bundle": "^2.2",
+    "doctrine/doctrine-migrations-bundle": "^3.0",
+    "doctrine/orm": "^2.8",
+    "php": "^7.4",
+    "symfony/framework-bundle": "^5.1"
+  },
+  "require-dev": {
+    "psr/log": "^1.1"
+  },
+  "autoload": {
+    "psr-4": {
+      "SweetSallyBe\\Helpers\\": "src"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "SweetSallyBe\\Helpers\\Tests\\": "tests"
+    }
+  },
+  "scripts": {
+  }
+}
