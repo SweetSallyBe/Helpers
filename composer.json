@@ -1,5 +1,5 @@
 {
-  "name": "sweet-sally-be/helper",
+  "name": "sweet-sally-be/helpers",
   "description": "Various Symfony for my projects",
   "type": "symfony-bundle",
   "minimum-stability": "dev",
