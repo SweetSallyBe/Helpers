@@ -16,7 +16,7 @@
     "doctrine/doctrine-migrations-bundle": "^3.0",
     "doctrine/orm": "^2.8",
     "php": "^7.4",
-    "symfony/framework-bundle": "^5.1"
+    "symfony/framework-bundle": "^5.2"
   },
   "require-dev": {
     "psr/log": "^1.1"
