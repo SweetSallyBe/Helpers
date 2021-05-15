@@ -8,7 +8,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Event\BeforeEntityUpdatedEvent;
 use SweetSallyBe\Helpers\Entity\AbstractEntity;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
-class EasyAdminSubscriber implements EventSubscriberInterface
+class AbstractEasyAdminSubscriber implements EventSubscriberInterface
 {
 
     /**
