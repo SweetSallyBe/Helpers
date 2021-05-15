@@ -1,7 +1,7 @@
 <?php
 
 
-namespace SweetSallyBe\Helpers\Entity\Repository;
+namespace SweetSallyBe\Helpers\Repository;
 
 
 use SweetSallyBe\Helpers\Entity\AbstractEntity;
