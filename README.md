@@ -15,3 +15,4 @@ be my guest.
 - Implement and use SweetSallyBe\Helpers\Entity\Interfaces\Token and SweetSallyBe\Helpers\Entity\Traits to have methods
   to get and set tokens
 - Use EasyAminSubscriber to set createdAt and updatedAt
+- Use static SweetSallyBe\Helpers\Service for various extra's
