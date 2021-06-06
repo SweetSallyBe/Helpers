@@ -4,17 +4,28 @@
 namespace SweetSallyBe\Helpers\Service;
 
 
+use Symfony\Component\DependencyInjection\Exception\ParameterNotFoundException;
+use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Component\Filesystem\Exception\FileNotFoundException;
 use Symfony\Component\HttpKernel\KernelInterface;
+use Symfony\Component\Intl\Languages;
 use Symfony\Component\Yaml\Yaml;
 
 class Helper
 {
-    private ?KernelInterface $kernel = null;
+    public const PARAM_LOCALES = 'app.locales';
+    public const PARAM_DEFAULT_LOCALE = 'locale';
 
-    public function __construct(KernelInterface $kernel)
+    private ?KernelInterface $kernel = null;
+    /**
+     * @var \Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface
+     */
+    private ParameterBagInterface $parameterBag;
+
+    public function __construct(KernelInterface $kernel, ParameterBagInterface $parameterBag)
     {
         $this->kernel = $kernel;
+        $this->parameterBag = $parameterBag;
     }
 
     public function getConfig(string $config): ?array
@@ -37,5 +48,30 @@ class Helper
             }
         }
         return $results;
+    }
+
+    public function getDefinedLanguages(): array
+    {
+        if (!$this->parameterBag->has(self::PARAM_LOCALES)) {
+            throw new ParameterNotFoundException(
+                sprintf('Parameter %s is not found in services.yaml', self::PARAM_LOCALES)
+            );
+        }
+        $languages = explode('|', $this->parameterBag->get(self::PARAM_LOCALES));
+        $result = [];
+        foreach ($languages as $short) {
+            $result[$short] = Languages::getName($short);
+        }
+        return $result;
+    }
+
+    public function getDefaultLanguage(): string
+    {
+        if (!$this->parameterBag->has(self::PARAM_DEFAULT_LOCALE)) {
+            throw new ParameterNotFoundException(
+                sprintf('Parameter %s is not found in services.yaml', self::PARAM_DEFAULT_LOCALE)
+            );
+        }
+        return $this->parameterBag->get(self::PARAM_DEFAULT_LOCALE);
     }
 }

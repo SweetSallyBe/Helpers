@@ -45,7 +45,7 @@ class AbstractEasyAdminSubscriber implements EventSubscriberInterface
         $this->setUpdatedAt($event->getEntityInstance());
     }
 
-    private function setUpdatedAt(AbstractEntity $entity): void
+    protected function setUpdatedAt(AbstractEntity $entity): void
     {
         $entity->setUpdatedAt(new \DateTime());
     }
