@@ -14,12 +14,9 @@ use Symfony\Component\Yaml\Yaml;
 class Helper
 {
     public const PARAM_LOCALES = 'app.locales';
-    public const PARAM_DEFAULT_LOCALE = 'locale';
+    public const PARAM_DEFAULT_LOCALE = 'app.locale';
 
     private ?KernelInterface $kernel = null;
-    /**
-     * @var \Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface
-     */
     private ParameterBagInterface $parameterBag;
 
     public function __construct(KernelInterface $kernel, ParameterBagInterface $parameterBag)
