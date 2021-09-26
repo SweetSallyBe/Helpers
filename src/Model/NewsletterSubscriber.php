@@ -1,6 +1,6 @@
 <?php
 
-namespace SweetSallyBe\Helpers\Entity\Model;
+namespace SweetSallyBe\Helpers\Model;
 
 class NewsletterSubscriber
 {
