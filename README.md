@@ -16,3 +16,8 @@ be my guest.
   to get and set tokens
 - Use EasyAminSubscriber to set createdAt and updatedAt
 - Use static SweetSallyBe\Helpers\Service for various extra's
+- To use MailchimpService:
+  - Add this line in services.yaml to use the MailchimpService:
+    - services:
+      - MailchimpMarketing\ApiClient: ~
+  - Copy config/services/mailchimp.yaml and edit settings

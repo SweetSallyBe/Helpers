@@ -3,6 +3,7 @@
   "description": "Various Symfony for my projects",
   "type": "symfony-bundle",
   "minimum-stability": "dev",
+  "prefer-stable": true,
   "keywords": [
     "extensions","symfony","translatable"
   ],
@@ -15,18 +16,23 @@
     "doctrine/doctrine-bundle": "^2.2",
     "doctrine/doctrine-migrations-bundle": "^3.0",
     "doctrine/orm": "^2.8",
+    "mailchimp/marketing": "^3.0",
     "php": "^7.4",
     "symfony/framework-bundle": "^5.3",
-    "symfony/flex": "1.16.x-dev"
+    "symfony/flex": "1.16.x-dev",
+    "symfony/yaml": "5.3.*",
+    "symfony/runtime": "5.3.*",
+    "symfony/dotenv": "5.3.*"
   },
   "require-dev": {
     "psr/log": "^1.1",
-    "phpunit/phpunit": "9.5.x-dev",
     "symfony/browser-kit": "^5.3",
     "symfony/css-selector": "^5.3",
-    "symfony/phpunit-bridge": "6.0.x-dev"
+    "symfony/phpunit-bridge": "6.0.x-dev",
+    "phpunit/phpunit": "9.5.x-dev"
   },
   "autoload": {
+    "files": ["src/Kernel.php"],
     "psr-4": {
       "SweetSallyBe\\Helpers\\": "src"
     }
@@ -34,6 +40,12 @@
   "autoload-dev": {
     "psr-4": {
       "SweetSallyBe\\Helpers\\Tests\\": "tests"
+    }
+  },
+  "extra": {
+    "symfony": {
+      "allow-contrib": false,
+      "require": "5.3.*"
     }
   },
   "scripts": {
