@@ -1,0 +1,7 @@
+default: &default
+  apikey: 6ca361c14acc56b964041830d5761d51-us15
+  url: https://us15.admin.mailchimp.com/3.0
+  serverPrefix: us15
+bd-degustations:
+  <<: *default
+  listid: 2a2b75c7f3

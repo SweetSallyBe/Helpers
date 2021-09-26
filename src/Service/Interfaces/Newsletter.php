@@ -2,7 +2,7 @@
 
 namespace SweetSallyBe\Helpers\Service\Interfaces;
 
-use SweetSallyBe\Helpers\Entity\Model\NewsletterSubscriber;
+use SweetSallyBe\Helpers\Model\NewsletterSubscriber;
 
 interface Newsletter
 {

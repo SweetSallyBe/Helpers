@@ -5,7 +5,7 @@ namespace SweetSallyBe\Helpers\Service;
 
 use GuzzleHttp\Exception\ClientException;
 use MailchimpMarketing\ApiClient;
-use SweetSallyBe\Helpers\Entity\Model\NewsletterSubscriber;
+use SweetSallyBe\Helpers\Model\NewsletterSubscriber;
 use SweetSallyBe\Helpers\Service\Helper;
 use SweetSallyBe\Helpers\Service\Interfaces\Newsletter;
 
