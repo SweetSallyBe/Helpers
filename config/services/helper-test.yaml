@@ -1,7 +1,0 @@
-entry1: &default
-  subkey1: SUBKEY_1_VALUE
-  subkey2: SUBKEY_2_VALUE
-  subkey3: SUBKEY_3_VALUE
-entry2:
-  <<: *default
-  subkey4: SUBKEY_4_VALUE
