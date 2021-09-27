@@ -19,7 +19,6 @@
     "mailchimp/marketing": "^3.0",
     "php": "^7.4",
     "symfony/framework-bundle": "^5.3",
-    "symfony/flex": "1.16.x-dev",
     "symfony/yaml": "5.3.*",
     "symfony/runtime": "5.3.*",
     "symfony/intl": "5.3.*"
