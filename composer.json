@@ -21,7 +21,11 @@
     "symfony/framework-bundle": "^5.3",
     "symfony/yaml": "5.3.*",
     "symfony/runtime": "5.3.*",
-    "symfony/intl": "5.3.*"
+    "symfony/intl": "5.3.*",
+    "symfony/flex": "^1.16"
+  },
+  "conflict": {
+    "symfony/symfony": "*"
   },
   "require-dev": {
     "psr/log": "^1.1",
