@@ -2,32 +2,23 @@
 
 namespace SweetSallyBe\Helpers\Tests\Service;
 
-use MailchimpMarketing\ApiClient;
 use SweetSallyBe\Helpers\Model\NewsletterSubscriber;
 use SweetSallyBe\Helpers\Service\Helper;
 use SweetSallyBe\Helpers\Service\Mailchimp;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
-use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
-use Symfony\Component\HttpKernel\KernelInterface;
 
 class MailchimpTest extends KernelTestCase
 {
-    private static ?Mailchimp $mailchimpService = null;
+    private static ?Mailchimp $mailchimpServiceStatic = null;
     private static ?string $listId = null;
     private static array $stack = [];
     private static int $numberOfContacts = 0;
     private static bool $contactsAreDeleted = false;
 
+
     public static function setUpBeforeClass(): void
     {
-        $container = self::getContainer();
-        $helperService = new Helper(
-            $container->get(KernelInterface::class),
-            $container->get(ParameterBagInterface::class)
-        );
-        $apiClient = new ApiClient();
-        self::$mailchimpService = new Mailchimp($apiClient, $helperService);
-        self::$listId = '2a2b75c7f3';
+        self::$mailchimpServiceStatic = self::getContainer()->get(Mailchimp::class);
         for ($i = 1; $i <= 4; $i++) {
             $lastName = uniqid('TEST_USER_' . $i . '_' . time(), true);
             $mail = $lastName . '@sweetsally.be';
@@ -39,7 +30,7 @@ class MailchimpTest extends KernelTestCase
     {
         if (!self::$contactsAreDeleted) {
             foreach (self::$stack as $subscriber) {
-                self::$mailchimpService->delete($subscriber, self::$listId);
+                self::$mailchimpServiceStatic->delete($subscriber, self::$listId);
             }
         }
     }
@@ -49,17 +40,33 @@ class MailchimpTest extends KernelTestCase
      */
     public function service()
     {
-        $this->assertInstanceOf(Mailchimp::class, self::$mailchimpService);
-        $response = self::$mailchimpService->testConnection();
-        $this->assertTrue($response);
+        $this->assertInstanceOf(Mailchimp::class, self::$mailchimpServiceStatic);
+        $this->assertTrue(self::$mailchimpServiceStatic->testConnection());
     }
 
     /**
      * @test
      */
-    public function contacts(): void
+    public function config(): string
     {
-        $contacts = self::$mailchimpService->getContacts(self::$listId);
+        $helper = $this->getContainer()->get(Helper::class);
+        $config = $helper->getConfig('mailchimp');
+        $this->assertArrayHasKey('main', $config);
+        $this->assertArrayHasKey('apikey', $config['main']);
+        $this->assertArrayHasKey('url', $config['main']);
+        $this->assertArrayHasKey('serverPrefix', $config['main']);
+        $this->assertArrayHasKey('listid', $config['main']);
+        self::$listId = $config['main']['listid'];
+        return $config['main']['listid'];
+    }
+
+    /**
+     * @test
+     * @depends config
+     */
+    public function contacts(string $listId): void
+    {
+        $contacts = self::$mailchimpServiceStatic->getContacts($listId);
         self::$numberOfContacts = count($contacts);
         $this->assertIsArray($contacts);
         $contact = reset($contacts);
@@ -69,15 +76,15 @@ class MailchimpTest extends KernelTestCase
 
     /**
      * @test
-     * @depends contacts
+     * @depends config
      */
-    public function subscribeContact(): void
+    public function subscribeContact(string $listId): void
     {
         foreach (self::$stack as $contact) {
-            self::$mailchimpService->subscribe($contact, self::$listId);
+            self::$mailchimpServiceStatic->subscribe($contact, $listId);
         }
         $newNumberOfContacts = self::$numberOfContacts + count(self::$stack);
-        $allContacts = self::$mailchimpService->getContacts(self::$listId);
+        $allContacts = self::$mailchimpServiceStatic->getContacts($listId);
         $this->assertCount($newNumberOfContacts, $allContacts);
     }
 
@@ -87,7 +94,7 @@ class MailchimpTest extends KernelTestCase
     public function findContact(): void
     {
         foreach (self::$stack as $contact) {
-            $subscriber = self::$mailchimpService->find($contact->getEmail(), self::$listId);
+            $subscriber = self::$mailchimpServiceStatic->find($contact->getEmail(), self::$listId);
             $this->assertInstanceOf(NewsletterSubscriber::class, $subscriber);
             $this->assertEquals($contact->getFirstName(), $subscriber->getFirstName());
             $this->assertEquals($contact->getLastName(), $subscriber->getLastName());
@@ -95,7 +102,7 @@ class MailchimpTest extends KernelTestCase
     }
 
     /**
-     * @test
+     * @testss
      */
     public function updateContact(): void
     {
@@ -104,8 +111,8 @@ class MailchimpTest extends KernelTestCase
             $originalLastName = $contact->getLastName();
             $newFirstname = $originalFirstName . '-' . $i;
             $newLastname = $originalLastName . '-' . $i;
-            self::$mailchimpService->update($contact, $newFirstname, $newLastname, self::$listId);
-            $subscriber = self::$mailchimpService->find($contact->getEmail(), self::$listId);
+            self::$mailchimpServiceStatic->update($contact, $newFirstname, $newLastname, self::$listId);
+            $subscriber = self::$mailchimpServiceStatic->find($contact->getEmail(), self::$listId);
             $this->assertEquals($newFirstname, $subscriber->getFirstName());
             $this->assertEquals($newLastname, $subscriber->getLastName());
         }
@@ -117,9 +124,9 @@ class MailchimpTest extends KernelTestCase
     public function deleteContact(): void
     {
         foreach (self::$stack as $contact) {
-            self::$mailchimpService->delete($contact, self::$listId);
+            self::$mailchimpServiceStatic->delete($contact, self::$listId);
         }
-        $allContacts = self::$mailchimpService->getContacts(self::$listId);
+        $allContacts = self::$mailchimpServiceStatic->getContacts(self::$listId);
         $this->assertCount(self::$numberOfContacts, $allContacts);
         self::$contactsAreDeleted = true;
     }

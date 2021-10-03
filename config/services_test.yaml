@@ -6,7 +6,7 @@ services:
         autoconfigure: true
     SweetSallyBe\Helpers\Service\Helper:
         public: true
-#    SweetSallyBe\Helpers\Service\Mailchimp:
-#        public: true
-#    MailchimpMarketing\ApiClient:
-#        public: true
+    SweetSallyBe\Helpers\Service\Mailchimp:
+        public: true
+    MailchimpMarketing\ApiClient:
+        public: true

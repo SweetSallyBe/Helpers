@@ -1,0 +1,8 @@
+default: &default
+  apikey: YOUR_API_KEY
+  url: YOUR_FULL_URL
+  serverPrefix: YOUR_SERVER_PREFIX
+main:
+  name: NAME_OF_THE_LIST
+  <<: *default
+  listid: LIST_ID

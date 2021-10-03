@@ -29,7 +29,7 @@ class Helper
     {
         $menuFile = $this->kernel->getProjectDir() . '/config/services/' . $config . '.yaml';
         if (!file_exists($menuFile)) {
-            throw new FileNotFoundException('Invalid Menufile: ' . $config);
+            throw new FileNotFoundException('Invalid Menufile: ' . $menuFile);
         }
         return Yaml::parseFile($menuFile);
     }
