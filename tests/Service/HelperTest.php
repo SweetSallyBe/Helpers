@@ -1,24 +1,18 @@
 <?php
 
-namespace App\Tests\Service;
+namespace SweetSallyBe\Tests\Service;
 
 use SweetSallyBe\Helpers\Service\Helper;
-use PHPUnit\Framework\TestCase;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
-use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
-use Symfony\Component\HttpKernel\KernelInterface;
 
 class HelperTest extends KernelTestCase
 {
     private ?Helper $helperService = null;
+    private static Helper $helperServiceStatic;
 
     protected function setUp(): void
     {
-        $container = $this->getContainer();
-        $this->helperService = new Helper(
-            $container->get(KernelInterface::class),
-            $container->get(ParameterBagInterface::class)
-        );
+        $this->helperService = $this->getContainer()->get(Helper::class);
     }
 
     /**

@@ -35,9 +35,13 @@
     "phpunit/phpunit": "9.5.x-dev"
   },
   "autoload": {
+    "files": ["src/Kernel.php"],
     "psr-4": {
       "SweetSallyBe\\Helpers\\": "src"
     }
+  },
+  "config": {
+    "sort-packages": true
   },
   "autoload-dev": {
     "psr-4": {

@@ -16,3 +16,27 @@
 /phpunit.xml
 .phpunit.result.cache
 ###< phpunit/phpunit ###
+.env
+.env.test
+bin/console
+bin/phpunit
+config/bundles.php
+config/preload.php
+config/routes.yaml
+config/services.yaml
+config/packages/cache.yaml
+config/packages/doctrine.yaml
+config/packages/doctrine_migrations.yaml
+config/packages/framework.yaml
+config/packages/routing.yaml
+config/packages/prod/doctrine.yaml
+config/packages/test/doctrine.yaml
+config/routes/annotations.yaml
+config/routes/framework.yaml
+migrations/.gitignore
+public/index.php
+src/Kernel.php
+src/Controller/.gitignore
+src/Entity/.gitignore
+composer.lock
+symfony.lock

@@ -22,8 +22,8 @@ class Mailchimp implements Newsletter
     {
         $config = $helper->getConfig('mailchimp');
         $mailchimpClient->setConfig([
-            'apiKey' => $config['bd-degustations']['apikey'],
-            'server' => $config['bd-degustations']['serverPrefix']
+            'apiKey' => $config['main']['apikey'],
+            'server' => $config['main']['serverPrefix']
         ]);
         $this->mailchimpClient = $mailchimpClient;
     }
