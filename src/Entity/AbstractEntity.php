@@ -66,6 +66,38 @@ abstract class AbstractEntity
         return $this;
     }
 
+    public function setStartValues($startValues): self
+    {
+        foreach ($startValues as $key => $value) {
+            if ($value) {
+                $methodName = 'set' . ucfirst($key);
+                if (method_exists($this, $methodName)) {
+                    $this->$methodName($value);
+                }
+            }
+        }
+        return $this;
+    }
+
+    /**
+     * @return array
+     * @throws \ReflectionException
+     */
+    public function toArray(): array
+    {
+        $reflect = new \ReflectionClass($this);
+        $props   = $reflect->getProperties();
+        $data = [];
+        foreach ($props as $prop) {
+            $name = $prop->getName();
+            $method = 'get' . ucfirst($prop->getName());
+            if (method_exists($this, $method)){
+                $data[$name] = $this->$method();
+            }
+        }
+        return $data;
+    }
+
     protected static function findConstants(string $search, $className = null): array
     {
         $className = ($className == null) ? __CLASS__ : $className;
