@@ -81,18 +81,36 @@ abstract class AbstractEntity
 
     /**
      * @return array
-     * @throws \ReflectionException
+     * @throws \Exception
      */
     public function toArray(): array
     {
         $reflect = new \ReflectionClass($this);
-        $props   = $reflect->getProperties();
+        $props = $reflect->getProperties();
         $data = [];
         foreach ($props as $prop) {
             $name = $prop->getName();
             $method = 'get' . ucfirst($prop->getName());
-            if (method_exists($this, $method)){
-                $data[$name] = $this->$method();
+            if (method_exists($this, $method)) {
+                $value = $this->$method();
+                switch (true) {
+                    case is_string($value):
+                    case is_int($value):
+                    case is_float($value);
+                    case is_null($value);
+                        $value = $value;
+                        break;
+                    case $value instanceof \DateTime:
+                        $value = $value->format('d/m/Y H:i');
+                        break;
+                    default:
+                        if ($_SERVER['APP_ENV'] !== 'production'){
+                            throw new \Exception(sprintf('Invalid type: %s for %s', gettype($value), $prop->getName()));
+                        } else {
+                            $value = '';
+                        }
+                }
+                $data[$name] = $value;
             }
         }
         return $data;
