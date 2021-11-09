@@ -4,10 +4,10 @@ namespace SweetSallyBe\Helpers\Model;
 
 class NewsletterSubscriber
 {
-    private string $email;
-    private string $id;
-    private string $firstName;
-    private string $lastName;
+    private ?string $email;
+    private ?string $id = '';
+    private ?string $firstName = '';
+    private ?string $lastName = '';
 
     public function __construct(string $email, ?string $id = null, ?string $firstName = null, ?string $lastName = null)
     {
