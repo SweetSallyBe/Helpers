@@ -13,7 +13,7 @@
     { "name": "Sweet Sally", "homepage": "https://www.sweetsally.be" }
   ],
   "require": {
-    "php": "^7.4",
+    "php": "^7.4|^8.1",
     "doctrine/doctrine-bundle": "^2.2",
     "doctrine/doctrine-migrations-bundle": "^3.0",
     "doctrine/orm": "^2.8",
