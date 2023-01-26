@@ -6,6 +6,8 @@ This is a starter for some of my helpers. I know there might be better solutions
 these, please be my guest. The main goal is to keep these as simple as possible. If you want to help using these, please
 be my guest.
 
+From > 0.07 For PHP 8 only!
+
 ## Use
 
 - Extend your classes from SweetSallyBe\Helpers\Entity\AbstractEntity to get default properties for id, createdAt and
