@@ -17,6 +17,11 @@ abstract class AbstractEntity
     #[ORM\Column(type: 'datetime')]
     protected ?\DateTimeInterface $updatedAt;
 
+    public function __construct()
+    {
+        $this->setCreatedAt(new \DateTime());
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -32,9 +37,11 @@ abstract class AbstractEntity
         if ($this->getCreatedAt()) {
             return $this->getCreatedAt()->format('d/m/Y');
         }
+
+        return '';
     }
 
-    public function setCreatedAt(\DateTimeInterface $createdAt): self
+    private function setCreatedAt(\DateTimeInterface $createdAt): self
     {
         $this->createdAt = $createdAt;
 
@@ -51,6 +58,8 @@ abstract class AbstractEntity
         if ($this->getUpdatedAt()) {
             return $this->getUpdatedAt()->format('d/m/Y');
         }
+
+        return '';
     }
 
     public function setUpdatedAt(\DateTimeInterface $updatedAt): self
@@ -70,6 +79,7 @@ abstract class AbstractEntity
                 }
             }
         }
+
         return $this;
     }
 
@@ -98,7 +108,7 @@ abstract class AbstractEntity
                         $value = $value->format('d/m/Y H:i');
                         break;
                     default:
-                        if ($_SERVER['APP_ENV'] !== 'production'){
+                        if ($_SERVER['APP_ENV'] !== 'production') {
                             throw new \Exception(sprintf('Invalid type: %s for %s', gettype($value), $prop->getName()));
                         } else {
                             $value = '';
@@ -107,9 +117,14 @@ abstract class AbstractEntity
                 $data[$name] = $value;
             }
         }
+
         return $data;
     }
 
+    /**
+     * @deprecated
+     * @see Helper::getConstants();
+     */
     protected static function findConstants(string $search, $className = null): array
     {
         $className = ($className == null) ? __CLASS__ : $className;
@@ -121,6 +136,7 @@ abstract class AbstractEntity
                 $results[$constantValue] = substr($constantName, strlen($search));
             }
         }
+
         return $results;
     }
 }
