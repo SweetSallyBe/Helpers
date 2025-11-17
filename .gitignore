@@ -30,3 +30,4 @@ src/Controller/.gitignore
 src/Entity/.gitignore
 composer.lock
 symfony.lock
+test-results

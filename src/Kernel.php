@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace SweetSallyBe\Helpers;
 
 use Symfony\Bundle\FrameworkBundle\Kernel\MicroKernelTrait;
 use Symfony\Component\HttpKernel\Kernel as BaseKernel;

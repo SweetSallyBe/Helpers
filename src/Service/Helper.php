@@ -1,8 +1,6 @@
 <?php
 
-
 namespace SweetSallyBe\Helpers\Service;
-
 
 use Symfony\Component\DependencyInjection\Exception\ParameterNotFoundException;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
@@ -16,13 +14,8 @@ class Helper
     public const PARAM_LOCALES = 'app.locales';
     public const PARAM_DEFAULT_LOCALE = 'app.locale';
 
-    private ?KernelInterface $kernel = null;
-    private ParameterBagInterface $parameterBag;
-
-    public function __construct(KernelInterface $kernel, ParameterBagInterface $parameterBag)
+    public function __construct(private readonly KernelInterface $kernel, private readonly ParameterBagInterface $parameterBag)
     {
-        $this->kernel = $kernel;
-        $this->parameterBag = $parameterBag;
     }
 
     public function getConfig(string $config): ?array
@@ -31,6 +24,7 @@ class Helper
         if (!file_exists($menuFile)) {
             throw new FileNotFoundException('Invalid Menufile: ' . $menuFile);
         }
+
         return Yaml::parseFile($menuFile);
     }
 
@@ -44,6 +38,7 @@ class Helper
                 $results[$constantValue] = substr($constantName, strlen($search));
             }
         }
+
         return $results;
     }
 
@@ -59,6 +54,7 @@ class Helper
         foreach ($languages as $short) {
             $result[$short] = Languages::getName($short);
         }
+
         return $result;
     }
 
@@ -69,6 +65,7 @@ class Helper
                 sprintf('Parameter %s is not found in services.yaml', self::PARAM_DEFAULT_LOCALE)
             );
         }
+
         return $this->parameterBag->get(self::PARAM_DEFAULT_LOCALE);
     }
 }
