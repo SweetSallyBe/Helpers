@@ -1,0 +1,5 @@
+services:
+  SweetSallyBe\Helpers\Tests\Repository\DummyRepository:
+    arguments:
+      - '@doctrine'
+    tags: [ 'doctrine.repository_service' ]

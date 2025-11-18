@@ -11,6 +11,7 @@
          cacheDirectory=".phpunit.cache"
          beStrictAboutChangesToGlobalState="false"
          beStrictAboutTestsThatDoNotTestAnything="false"
+         beStrictAboutOutputDuringTests="false"
 >
     <php>
         <ini name="display_errors" value="1"/>
