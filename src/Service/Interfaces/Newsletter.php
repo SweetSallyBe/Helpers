@@ -12,7 +12,10 @@ interface Newsletter
 
     public function subscribe(NewsletterSubscriber $contact, ?string $list = null): void;
 
-    public function update(NewsletterSubscriber $contact, ?string $newFirstname = null, ?string $newLastname = null,
+    public function update(
+        NewsletterSubscriber $contact,
+        ?string $newFirstname = null,
+        ?string $newLastname = null,
         ?string $list = null
     ): void;
 }
