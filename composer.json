@@ -1,13 +1,13 @@
 {
   "name": "sweet-sally-be/helpers",
   "description": "Various Symfony for my projects",
-  "version": "0.081",
+  "version": "0.082",
   "type": "library",
   "minimum-stability": "stable",
   "prefer-stable": true,
   "keywords": [
     "extensions",
-    "symfony",
+    "Symfony",
     "translatable"
   ],
   "homepage": "https://www.sweetsally.be",
