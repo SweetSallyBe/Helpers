@@ -1,7 +1,7 @@
 {
   "name": "sweet-sally-be/helpers",
   "description": "Various Symfony for my projects",
-  "version": "0.080",
+  "version": "0.081",
   "type": "library",
   "minimum-stability": "stable",
   "prefer-stable": true,
