@@ -1,7 +1,6 @@
 {
   "name": "sweet-sally-be/helpers",
   "description": "Various Symfony for my projects",
-  "version": "0.084",
   "type": "library",
   "minimum-stability": "stable",
   "prefer-stable": true,
@@ -20,7 +19,7 @@
   ],
   "require": {
     "php": ">=8.4",
-    "doctrine/orm": "^3.5",
+    "doctrine/orm": "^2.15|^3.0",
     "mailchimp/marketing": "^3.0",
     "symfony/intl": "^7.3|^8",
     "symfony/property-access": "^7.3|^8",
@@ -36,7 +35,7 @@
   },
   "autoload": {
     "psr-4": {
-      "SweetSallyBe\\Helpers\\": "src"
+      "SweetSallyBe\\Helpers\\": "src/"
     }
   },
   "config": {
