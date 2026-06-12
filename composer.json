@@ -1,7 +1,7 @@
 {
   "name": "sweet-sally-be/helpers",
   "description": "Various Symfony for my projects",
-  "version": "0.083",
+  "version": "0.084",
   "type": "library",
   "minimum-stability": "stable",
   "prefer-stable": true,
@@ -22,9 +22,9 @@
     "php": ">=8.4",
     "doctrine/orm": "^3.5",
     "mailchimp/marketing": "^3.0",
-    "symfony/intl": "^7.3|^8.0",
-    "symfony/property-access": "^7.3|^8.0",
-    "symfony/yaml": "^7.3|^8.0"
+    "symfony/intl": "^7.3|^8",
+    "symfony/property-access": "^7.3|^8",
+    "symfony/yaml": "^7.3|^8"
   },
   "require-dev": {
     "doctrine/dbal": "^4.4",
@@ -32,7 +32,7 @@
     "doctrine/doctrine-fixtures-bundle": "^4.3",
     "fakerphp/faker": "^1.24",
     "phpunit/phpunit": "^12.5",
-    "symfony/var-dumper": "^6.4|^7.0|^8.0"
+    "symfony/var-dumper": "^6.4|^7.0|^8"
   },
   "autoload": {
     "psr-4": {
